@@ -1,0 +1,30 @@
+{
+  "name": "engine",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "start": "WITH_SNAPSHOT=true node dist/index.js",
+    "dev": "npm run build && WITH_SNAPSHOT=true npm run start",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@datastructures-js/priority-queue": "^6.3.1",
+    "@types/redis": "^4.0.11",
+    "priority-queue-typescript": "^1.0.1",
+    "redis": "^4.7.0",
+    "@repo/prisma-client": "*"
+  },
+  "devDependencies": {
+    "@repo/types": "*",
+    "@types/node": "^20.14.11"
+  },
+  "exports": {
+    "./*": "./*"
+  }
+}

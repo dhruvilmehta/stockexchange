@@ -1,0 +1,15 @@
+{
+  "name": "@repo/prisma-client",
+  "version": "0.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "bcrypt": "^5.1.1"
+  },
+  "devDependencies": {
+    "prisma": "5.11.0"
+  },
+  "exports": {
+    "./client": "./index.ts"
+  }
+}
