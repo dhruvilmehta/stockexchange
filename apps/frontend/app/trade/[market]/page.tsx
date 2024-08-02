@@ -36,9 +36,11 @@ export default function Page() {
       <div className="w-[10px] flex-col border-slate-800 border-l"></div>
       <div>
         <div className="flex flex-col w-[250px]">
-          <SwapUI market={market as string} price={price}/>
+          <SwapUI market={market as string} price={price} />
         </div>
       </div>
     </div>
   );
 }
+
+export const runtime = 'edge';
