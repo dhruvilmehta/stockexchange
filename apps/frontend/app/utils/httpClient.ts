@@ -1,10 +1,10 @@
 import axios from "axios";
-import { Depth, KLine, Ticker, Trade } from "./types";
+import { Depth, KLine, TickerType, Trade } from "./types";
 
 // const BASE_URL = "https://exchange-proxy.100xdevs.com/api/v1";
 const BASE_URL = "http://localhost:3001/api/v1";
 
-export async function getTicker(market: string): Promise<Ticker> {
+export async function getTicker(market: string): Promise<TickerType> {
   const tickers = await getTickers();
   const ticker = tickers.find((t) => t.symbol === market);
   if (!ticker) {
@@ -13,7 +13,7 @@ export async function getTicker(market: string): Promise<Ticker> {
   return ticker;
 }
 
-export async function getTickers(): Promise<Ticker[]> {
+export async function getTickers(): Promise<TickerType[]> {
   const response = await axios.get(`${BASE_URL}/tickers`);
   return response.data;
 }

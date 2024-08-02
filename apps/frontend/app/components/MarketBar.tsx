@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Ticker } from "../utils/types";
+import { TickerType } from "../utils/types";
 import { getTicker } from "../utils/httpClient";
 import { SignalingManager } from "../utils/SignalingManager";
 
 export const MarketBar = ({market}: {market: string}) => {
-    const [ticker, setTicker] = useState<Ticker | null>(null);
+    const [ticker, setTicker] = useState<TickerType | null>(null);
 
     useEffect(() => {
         getTicker(market).then(setTicker);
-        SignalingManager.getInstance().registerCallback("ticker", (data: Partial<Ticker>)  =>  setTicker(prevTicker => ({
+        SignalingManager.getInstance().registerCallback("ticker", (data: Partial<TickerType>)  =>  setTicker((prevTicker:any) => ({
             firstPrice: data?.firstPrice ?? prevTicker?.firstPrice ?? '',
             high: data?.high ?? prevTicker?.high ?? '',
             lastPrice: data?.lastPrice ?? prevTicker?.lastPrice ?? '',

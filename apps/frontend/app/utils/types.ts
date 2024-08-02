@@ -26,7 +26,7 @@ export interface Depth {
     lastUpdateId: string
 }
 
-export interface Ticker {
+export interface TickerType {
     "firstPrice": string,
     "high": string,
     "lastPrice": string,
