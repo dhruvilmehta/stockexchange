@@ -68,6 +68,7 @@ export class Engine {
     }
 
     setBaseBalances() {
+        console.log("Setting base balances")
         this.balances.set("1", {
             [BASE_CURRENCY]: {
                 available: 10000000,
@@ -477,22 +478,28 @@ export class Engine {
         price: string,
         quantity: string,
     ): void {
+        console.log("-----------------")
         console.log(this.balances.get(userId), " Check Funds")
-        if (side === OrderSide.BUY) {
-            if ((this.balances.get(userId)?.[quoteAsset]?.available || 0) < Number(quantity) * Number(price)) {
-                throw new CustomError("Insufficient funds", 400);
-            }
-            if (!this.balances.get(userId)) throw new CustomError("User not found", 404);
-            (this.balances.get(userId) as UserBalance)[quoteAsset]!.available -= Number(quantity) * Number(price);
-            (this.balances.get(userId) as UserBalance)[quoteAsset]!.locked += Number(quantity) * Number(price);
-        } else {
-            if ((this.balances.get(userId)?.[baseAsset]?.available || 0) < Number(quantity) * Number(price)) {
-                throw new CustomError("Insufficient funds", 400);
-            }
+        console.log("-----------------")
+        try {
+            if (side === OrderSide.BUY) {
+                if ((this.balances.get(userId)?.[quoteAsset]?.available || 0) < Number(quantity) * Number(price)) {
+                    throw new CustomError("Insufficient funds", 400);
+                }
+                if (!this.balances.get(userId)) throw new CustomError("Balance not found", 404);
+                (this.balances.get(userId) as UserBalance)[quoteAsset]!.available -= Number(quantity) * Number(price);
+                (this.balances.get(userId) as UserBalance)[quoteAsset]!.locked += Number(quantity) * Number(price);
+            } else {
+                if ((this.balances.get(userId)?.[baseAsset]?.available || 0) < Number(quantity) * Number(price)) {
+                    throw new CustomError("Insufficient funds", 400);
+                }
 
-            if (!this.balances.get(userId)) throw new Error("User not found");
-            (this.balances.get(userId) as UserBalance)[baseAsset]!.available -= Number(quantity) * Number(price);
-            (this.balances.get(userId) as UserBalance)[baseAsset]!.locked += Number(quantity) * Number(price);
+                if (!this.balances.get(userId)) throw new Error("User not found");
+                (this.balances.get(userId) as UserBalance)[baseAsset]!.available -= Number(quantity) * Number(price);
+                (this.balances.get(userId) as UserBalance)[baseAsset]!.locked += Number(quantity) * Number(price);
+            }
+        } catch (error) {
+            console.error((error as CustomError).message)
         }
     }
 }

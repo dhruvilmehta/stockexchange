@@ -23,7 +23,7 @@ export function SwapUI({ market, price }: { market: string; price: string }) {
           },
         );
         setAvailableBalance(parseFloat(balance.data.balance).toFixed(2));
-        console.log('Balance ', balance);
+        // console.log('Balance ', balance);
       } else {
         const balance = await axios.get(
           `${BASE_URL}/api/v1/getBalance?asset=${quoteAsset}`,
@@ -53,6 +53,7 @@ export function SwapUI({ market, price }: { market: string; price: string }) {
   };
 
   const onButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
+    if (!orderPrice || !orderQuantity) return;
     const response = await axios.post(
       `${BASE_URL}/api/v1/order`,
       {

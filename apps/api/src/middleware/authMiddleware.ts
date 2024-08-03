@@ -9,9 +9,9 @@ interface CustomJwtPayload extends jwt.JwtPayload {
 const JWT_SECRET = process.env.JWT_SECRET || 'your_secret_key';
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  console.log(req.headers)
+  // console.log(req.headers)
   const token = req.headers["authorization"] || req.headers["Authorization"];
-  console.log(token, "Token")
+  // console.log(token, "Token")
 
   try {
     if (!token) {

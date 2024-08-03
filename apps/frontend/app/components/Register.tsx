@@ -10,7 +10,7 @@ const Signup = () => {
   const router = useRouter();
 
   const handleSignup = async () => {
-    console.log(username, password);
+    // console.log(username, password);
     if (username === '' || password === '') return;
     try {
       const response = await axios.post(`${SERVICE_URL}/register`, {
@@ -23,7 +23,7 @@ const Signup = () => {
       }
     } catch (error) {
       const axiosError = error as AxiosError;
-      console.log(axiosError.response?.data);
+      // console.log(axiosError.response?.data);
     }
   };
 

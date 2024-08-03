@@ -5,7 +5,7 @@ import errorHandler from "./errorHandler";
 import { depthRouter } from "./routes/depth";
 import { tradesRouter } from "./routes/trades";
 import { klineRouter } from "./routes/klines";
-import { tickersRouter } from "./routes/tickers";
+import { tickerRouter } from "./routes/tickers";
 import dotenv from "dotenv"
 import { authRouter } from "./routes/auth";
 import { balanceRouter } from "./routes/balance";
@@ -21,7 +21,7 @@ app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/depth", depthRouter);
 app.use("/api/v1/trades", tradesRouter);
 app.use("/api/v1/klines", klineRouter);
-app.use("/api/v1/tickers", tickersRouter);
+app.use("/api/v1/tickers", tickerRouter);
 app.use("/api/v1/getBalance", balanceRouter)
 app.use(errorHandler)
 

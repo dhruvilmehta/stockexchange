@@ -7,19 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  token    String?
+}
+
 model Prices {
   id          String   @id @unique @default(uuid())
   companyName String
   time        DateTime @default(now())
-  price       String
+  price       Float
+  volume      Float
 
-  @@unique([companyName, time])
+  // @@unique([companyName, time])
   @@index([companyName])
-}
-
-model User {
-  id       Int    @id @default(autoincrement())
-  username String @unique
-  password String
-  token    String?
 }

@@ -17,7 +17,8 @@ model Prices {
   id          String   @id @unique @default(uuid())
   companyName String
   time        DateTime @default(now())
-  price       String
+  price       Float
+  volume      Float
 
   @@unique([companyName, time])
   @@index([companyName])

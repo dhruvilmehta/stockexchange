@@ -25,13 +25,18 @@ async function main() {
                 // await pgClient.query(query, values);
                 switch (data.data.market.toLowerCase()) {
                     case "tata_inr": {
-                        await prisma.prices.create({
-                            data: {
-                                companyName: "tata",
-                                time: timestamp,
-                                price: price
-                            }
-                        })
+                        try {
+                            await prisma.prices.create({
+                                data: {
+                                    companyName: "tata",
+                                    time: timestamp,
+                                    price: Number(price),
+                                    volume: Number(data.data.quantity)
+                                }
+                            })
+                        } catch (error) {
+                            console.log(error)
+                        }
                         break;
                     }
                     default:

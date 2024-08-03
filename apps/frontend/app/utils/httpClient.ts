@@ -6,7 +6,7 @@ const BASE_URL = "http://localhost:3001/api/v1";
 
 export async function getTicker(market: string): Promise<TickerType> {
   const tickers = await getTickers();
-  const ticker = tickers.find((t) => t.symbol === market);
+  const ticker = tickers.find((t) => t.symbol === market.split("_")[0]);
   if (!ticker) {
     throw new Error(`No ticker found for ${market}`);
   }

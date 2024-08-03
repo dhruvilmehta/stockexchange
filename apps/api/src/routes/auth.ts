@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_secret_key';
 
 authRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const { username, password }: { username: string; password: string } = req.body;
 
         // Check if the user exists

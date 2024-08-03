@@ -9,14 +9,14 @@ export const balanceRouter = Router()
 
 balanceRouter.get("/", authMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     const asset: string = req.query.asset as string;
-    console.log("Asset", asset)
+    // console.log("Asset", asset)
 
     try {
         const response = await RedisManager.getInstance().sendAndAwait({
             type: MessageToOrderbookTypes.GET_USER_BALANCE,
             data: {
                 userId: "1" || req.userId,
-                asset: asset
+                asset: asset.toUpperCase()
             }
         }) as Extract<MessageFromOrderbook, { type: MessageFromOrderbookTypes.USER_BALANCE }>;;
 

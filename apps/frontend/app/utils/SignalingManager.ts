@@ -59,7 +59,7 @@ export class SignalingManager {
                         //     quoteVolume: message.data.V,
                         //     symbol: message.data.s,
                         // }
-                        console.log(message, " message");
+                        // console.log(message, " message");
                         // callback(newTicker);
                         const updatedBids = message.data.b;
                         const updatedAsks = message.data.a;
@@ -67,7 +67,7 @@ export class SignalingManager {
                     }
                     if (type === "trade") {
                         console.log(message, " Trade message")
-                        callback(message.data.p)
+                        callback(message.data.p, message.data.q)
                     }
                 });
             }
@@ -88,9 +88,7 @@ export class SignalingManager {
 
     async registerCallback(type: string, callback: any, id: string) {
         this.callbacks[type] = this.callbacks[type] || [];
-        this.callbacks[type].push({ callback, id });
-        console.log("Registering ws ", type, id)
-        // "ticker" => callback
+        if (this.callbacks[type].length == 0) this.callbacks[type].push({ callback, id });
     }
 
     async deRegisterCallback(type: string, id: string) {

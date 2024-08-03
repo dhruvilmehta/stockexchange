@@ -16,7 +16,7 @@ orderRouter.post("/", authMiddleware, async (req: Request, res: Response, next: 
     type CreateOrderRequestBodyType = { market: string, price: string, quantity: string, side: OrderSide }
     const { market, price, quantity, side }: CreateOrderRequestBodyType = req.body;
     const userId = req.userId
-    console.log("CREATE ORDER REQUEST")
+    // console.log("CREATE ORDER REQUEST")
 
     try {
         const response = await RedisManager.getInstance().sendAndAwait({
@@ -65,7 +65,7 @@ orderRouter.delete("/", authMiddleware, async (req: Request, res: Response, next
 // Get all open orders
 orderRouter.get("/open", authMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("In open orders")
+        // console.log("In open orders")
         if (!req.query.market) return res.status(404).json({ message: "Market not passed in" })
         const response = await RedisManager.getInstance().sendAndAwait({
             type: MessageToOrderbookTypes.GET_OPEN_ORDERS,

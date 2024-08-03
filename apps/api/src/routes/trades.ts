@@ -8,9 +8,9 @@ export const tradesRouter = Router();
 // Get trades
 tradesRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
     const market = req.query.symbol as string;
-    console.log(market)
+    // console.log(market)
     try {
-        const prices: { price: string, time: Date }[] = await getCompanyPrices(market);
+        const prices: { price: number, time: Date }[] = await getCompanyPrices(market);
 
         return res.status(200).json(prices)
     } catch (error) {
@@ -19,7 +19,7 @@ tradesRouter.get("/", async (req: Request, res: Response, next: NextFunction) =>
 })
 
 async function getCompanyPrices(market: string) {
-    let prices: { price: string, time: Date }[]
+    let prices: { price: number, time: Date }[]
 
     switch (market.toLowerCase()) {
         case 'tata_inr':
