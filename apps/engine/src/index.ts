@@ -1,8 +1,11 @@
 import { createClient, RedisClientType } from "redis";
 import { Engine } from "./trade/Engine";
 import dotenv from "dotenv"
+import express from 'express';
 
 dotenv.config()
+
+const app = express()
 
 async function main() {
     const engine: Engine = new Engine()
@@ -21,4 +24,7 @@ async function main() {
     }
 }
 
-main()
+app.listen(3000, () => {
+    console.log("Listening on port 3000")
+    main()
+})
