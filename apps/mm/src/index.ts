@@ -1,4 +1,5 @@
 import axios from "axios";
+import express from 'express'
 
 // const BASE_URL = "http://localhost:3001";
 const BASE_URL = 'https://stockexchange-4p5n.onrender.com';
@@ -6,6 +7,12 @@ const TOTAL_BIDS = 15;
 const TOTAL_ASK = 15;
 const MARKET = "TATA_INR";
 const USER_ID = "1";
+
+const app = express()
+
+app.get("/", (req, res) => {
+    return res.status(200).send("Engine Working")
+})
 
 async function main() {
     const price = 1000 + Math.random() * 10;
@@ -103,6 +110,10 @@ async function cancelAsksLessThan(openOrders: any[], price: number) {
 
     return openOrders.filter(o => o.side === "sell" && (o.price < price || Math.random() < 0.3)).length;
 }
+
+app.listen(3000, () => {
+    console.log("Listening on port 3000")
+})
 
 setInterval(() => {
     main();

@@ -481,19 +481,41 @@ export class Engine {
         console.log(this.balances.get(userId), " Check Funds")
         console.log("-----------------")
         try {
+            if (!this.balances.get(userId)) throw new CustomError("Balance not found", 404);
             if (side === OrderSide.BUY) {
                 if ((this.balances.get(userId)?.[quoteAsset]?.available || 0) < Number(quantity) * Number(price)) {
-                    throw new CustomError("Insufficient funds", 400);
+                    this.balances.set(userId, {
+                        [BASE_CURRENCY]: {
+                            available: 10000000,
+                            locked: 0,
+                        },
+                        TATA: {
+                            available: 10000000,
+                            locked: 0,
+                        },
+                    });
+                    // throw new CustomError("Insufficient funds", 400);
+                    console.log("Insufficient funds!!!! Adding more dummy funds")
                 }
-                if (!this.balances.get(userId)) throw new CustomError("Balance not found", 404);
                 (this.balances.get(userId) as UserBalance)[quoteAsset]!.available -= Number(quantity) * Number(price);
                 (this.balances.get(userId) as UserBalance)[quoteAsset]!.locked += Number(quantity) * Number(price);
             } else {
+                if (!this.balances.get(userId)) throw new Error("Balance not found");
                 if ((this.balances.get(userId)?.[baseAsset]?.available || 0) < Number(quantity) * Number(price)) {
-                    throw new CustomError("Insufficient funds", 400);
+                    // throw new CustomError("Insufficient funds", 400);
+                    this.balances.set(userId, {
+                        [BASE_CURRENCY]: {
+                            available: 10000000,
+                            locked: 0,
+                        },
+                        TATA: {
+                            available: 10000000,
+                            locked: 0,
+                        },
+                    });
+                    console.log("Insufficient funds!!!! Adding more dummy funds")
                 }
 
-                if (!this.balances.get(userId)) throw new Error("User not found");
                 (this.balances.get(userId) as UserBalance)[baseAsset]!.available -= Number(quantity) * Number(price);
                 (this.balances.get(userId) as UserBalance)[baseAsset]!.locked += Number(quantity) * Number(price);
             }

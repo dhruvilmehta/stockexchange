@@ -34,10 +34,16 @@ setInterval(async () => {
     const response = await axios.get("https://stockexchange-engine.onrender.com")
     if (response.status === 200) console.log("Engine Healthy")
     else console.log("Problem with engine")
-}, 10000)
+}, 30000)
 
 setInterval(async () => {
     const response = await axios.get("https://stockexchange-db.onrender.com")
     if (response.status === 200) console.log("Db Healthy")
     else console.log("Problem with Db")
-}, 10000)
+}, 30000)
+
+setInterval(async () => {
+    const response = await axios.get("https://stockexchange-mm.onrender.com")
+    if (response.status === 200) console.log("mm Healthy")
+    else console.log("Problem with mm")
+}, 30000)
