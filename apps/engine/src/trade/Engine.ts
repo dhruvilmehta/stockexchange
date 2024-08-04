@@ -11,7 +11,6 @@ import { Fill } from "../types/Fill";
 import { Depth } from "../types/Depth";
 import { MessageFromOrderbookTypes } from "../types/fromOrderbook";
 import { DbMessageType } from "../types/DbMessage";
-import prisma from "@repo/prisma-client/client"
 
 export const BASE_CURRENCY = "INR";
 

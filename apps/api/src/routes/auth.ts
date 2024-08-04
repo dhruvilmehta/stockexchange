@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import prisma from '@repo/prisma-client/client';
+// import prisma from '@repo/prisma-client/client';
+import prisma from '../prisma';
 import { NextFunction, Request, Response, Router } from 'express';
 
 export const authRouter = Router();

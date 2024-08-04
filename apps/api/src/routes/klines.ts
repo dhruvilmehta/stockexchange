@@ -1,5 +1,6 @@
-import prisma from "@repo/prisma-client/client";
+// import prisma from "@repo/prisma-client/client";
 import { NextFunction, Request, Response, Router } from "express";
+import prisma from "../prisma";
 
 export const klineRouter = Router();
 

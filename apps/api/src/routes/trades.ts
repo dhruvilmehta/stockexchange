@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 // import prisma from "../prisma";
-import prisma from "@repo/prisma-client/client"
+// import prisma from "@repo/prisma-client/client"
+import prisma from "../prisma";
 import { CustomError } from "../CustomError";
 
 export const tradesRouter = Router();

@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "build": "npm run migrate && npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "migrate": "cd ../../packages/prisma-client && npx prisma migrate dev",
     "start": "WITH_SNAPSHOT=true node dist/index.js",
     "dev": "npm run build && WITH_SNAPSHOT=true npm run start",
     "test": "vitest"

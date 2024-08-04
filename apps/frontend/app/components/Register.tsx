@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // const SERVICE_URL = 'http://localhost:3001/auth';
-const SERVICE_URL = 'https://stockexchange-4p5n.onrender.com';
+const SERVICE_URL = 'https://stockexchange-4p5n.onrender.com/auth';
 
 const Signup = () => {
   const [username, setUsername] = useState('');

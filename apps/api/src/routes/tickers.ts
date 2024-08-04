@@ -1,7 +1,7 @@
 
 import { Request, Router, Response, NextFunction } from "express";
-import prisma from "@repo/prisma-client/client";
-import { Prisma } from "@prisma/client";
+// import prisma from "@repo/prisma-client/client";
+import prisma from "../prisma";
 
 export const tickerRouter = Router();
 

@@ -9,6 +9,7 @@ import { tickerRouter } from "./routes/tickers";
 import dotenv from "dotenv"
 import { authRouter } from "./routes/auth";
 import { balanceRouter } from "./routes/balance";
+import axios from 'axios'
 
 dotenv.config()
 
@@ -28,3 +29,9 @@ app.use(errorHandler)
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
 });
+
+setInterval(async () => {
+    const response = await axios.get("https://stockexchange-engine.onrender.com")
+    if (response.status === 200) console.log("Engine Healthy")
+    else console.log("Problem with engine")
+}, 10000)
