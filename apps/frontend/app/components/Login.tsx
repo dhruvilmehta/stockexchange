@@ -3,7 +3,9 @@ import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const SERVICE_URL = 'http://localhost:3001/auth';
+// const SERVICE_URL = 'http://localhost:3001/auth';
+const SERVICE_URL = 'https://stockexchange-4p5n.onrender.com';
+
 export const Login = () => {
   const [username, setUsername] = useState<string>('dhruvil');
   const [password, setPassword] = useState<string>('1234');
