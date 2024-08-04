@@ -47,3 +47,9 @@ setInterval(async () => {
     if (response.status === 200) console.log("mm Healthy")
     else console.log("Problem with mm")
 }, 30000)
+
+setInterval(async () => {
+    const response = await axios.get("https://stockexchange-socket.onrender.com")
+    if (response.status === 200) console.log("Socket Healthy")
+    else console.log("Problem with socket")
+}, 30000)

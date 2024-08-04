@@ -2,7 +2,6 @@ import { NextFunction, Request, Response, Router } from "express";
 import { RedisManager } from "../RedisManager";
 import { MessageToOrderbook, MessageToOrderbookTypes } from "../types/toOrderbook";
 import { MessageFromOrderbook, MessageFromOrderbookTypes } from "../types/fromOrderbook"
-// import { CustomError } from "@repo/types/src/customError";
 import { CustomError } from "../CustomError";
 
 export const depthRouter = Router();
