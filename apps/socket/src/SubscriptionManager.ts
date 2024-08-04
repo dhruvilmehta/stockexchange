@@ -8,8 +8,10 @@ export class SubscriptionManager {
     private redisClient: RedisClientType;
 
     private constructor() {
-        this.redisClient = createClient();
+        const url = process.env.REDIS_CLIENT || 'redis://localhost:6379'
+        this.redisClient = createClient({ url: url });
         this.redisClient.connect();
+        console.log("Connected to redis at host ", url)
     }
 
     public static getInstance() {

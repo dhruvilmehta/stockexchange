@@ -8,8 +8,10 @@ export class RedisManager {
     private static instance: RedisManager;
 
     private constructor() {
-        this.client = createClient();
+        const url = process.env.REDIS_CLIENT || 'redis://localhost:6379'
+        this.client = createClient({ url: url });
         this.client.connect();
+        console.log("Redis connected on host ", url)
     }
 
     public static getInstance() {

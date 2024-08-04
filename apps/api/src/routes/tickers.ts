@@ -98,7 +98,7 @@ tickerRouter.get("/", async (req: Request, res: Response) => {
 
 
         const tickerData: TickerType[] = await prisma.$queryRawUnsafe(query, startTime, endTime);
-        console.log(tickerData)
+        // console.log(tickerData)
 
         return res.status(200).json(tickerData);
     } catch (error) {

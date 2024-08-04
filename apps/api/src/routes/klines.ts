@@ -30,10 +30,6 @@ klineRouter.get("/", async (req: Request, res: Response, next: NextFunction) => 
         return res.status(404).json({ message: `Invalid interval. Allowed intervals are: ${allowedIntervals.join(', ')}` });
     }
 
-    console.log("Interval ", interval);
-
-    // Ensure interval is formatted correctly for PostgreSQL
-    // const formattedInterval = `'${interval}'::interval`;
     const query = `
         SELECT
         time_bucket($1::interval, "time") AS bucket,

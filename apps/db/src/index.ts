@@ -1,4 +1,4 @@
-import { createClient } from 'redis';
+import { createClient, RedisClientType } from 'redis';
 import { DbMessage, DbMessageType } from './types/DbMessage';
 import dotenv from 'dotenv'
 import prisma from "@repo/prisma-client/client"
@@ -6,9 +6,10 @@ import prisma from "@repo/prisma-client/client"
 dotenv.config()
 
 async function main() {
-    const redisClient = createClient();
+    const url = process.env.REDIS_CLIENT || 'redis://localhost:6379'
+    const redisClient: RedisClientType = createClient({ url: url })
     await redisClient.connect();
-    console.log("connected to redis");
+    console.log("connected to redis on host ", url);
 
     while (true) {
         const response = await redisClient.rPop("db_processor" as string)
