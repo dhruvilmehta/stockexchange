@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js --allow-overwrite",
-    "start": "nodemon dist/index.js",
+    "start": "node dist/index.js",
     "dev": "npm run build && npm run start"
   },
   "author": "",
