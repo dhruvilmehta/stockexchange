@@ -10,6 +10,7 @@ export const balanceRouter = Router()
 balanceRouter.get("/", authMiddleware, async (req: Request, res: Response, next: NextFunction) => {
     const asset: string = req.query.asset as string;
     // console.log("Asset", asset)
+    console.log("API get User Balance")
 
     try {
         const response = await RedisManager.getInstance().sendAndAwait({

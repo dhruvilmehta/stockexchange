@@ -2,7 +2,8 @@ import axios from "axios";
 import { Depth, KLine, TickerType, Trade } from "./types";
 
 // const BASE_URL = "https://exchange-proxy.100xdevs.com/api/v1";
-const BASE_URL = "http://localhost:3001/api/v1";
+// const BASE_URL = "http://localhost:3001/api/v1";
+const BASE_URL = "https://stockexchange-4p5n.onrender.com/api/v1";
 
 export async function getTicker(market: string): Promise<TickerType> {
   const tickers = await getTickers();

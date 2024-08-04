@@ -1,7 +1,8 @@
 import { TickerType } from "./types";
 
 // export const BASE_URL = "wss://ws.backpack.exchange/"
-export const BASE_URL = "ws://localhost:3002"
+// export const BASE_URL = "ws://localhost:3002"
+export const BASE_URL = "wss://stockexchange-socket.onrender.com"
 
 export class SignalingManager {
     private ws: WebSocket;
