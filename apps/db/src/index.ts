@@ -3,8 +3,15 @@ import { DbMessage, DbMessageType } from './types/DbMessage';
 import dotenv from 'dotenv'
 // import prisma from "@repo/prisma-client/client"
 import prisma from './prisma';
+import express from 'express'
 
 dotenv.config()
+
+const app = express()
+
+app.get("/", (req, res) => {
+    return res.status(200).send("Engine Working")
+})
 
 async function main() {
     const url = process.env.REDIS_CLIENT || 'redis://localhost:6379'
@@ -47,7 +54,9 @@ async function main() {
             }
         }
     }
-
 }
 
+app.listen(3000, () => {
+    console.log("Listening on port 3000")
+})
 main();
