@@ -1,7 +1,8 @@
 import { createClient, RedisClientType } from 'redis';
 import { DbMessage, DbMessageType } from './types/DbMessage';
 import dotenv from 'dotenv'
-import prisma from "@repo/prisma-client/client"
+// import prisma from "@repo/prisma-client/client"
+import prisma from './prisma';
 
 dotenv.config()
 
