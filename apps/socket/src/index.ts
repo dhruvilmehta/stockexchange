@@ -20,6 +20,6 @@ wss.on("connection", (ws) => {
     UserManager.getInstance().addUser(ws);
 });
 
-server.listen(3000, () => {
-    console.log("Socket running http on port 3000")
+server.listen(3003, () => {
+    console.log("Socket running http on port 3003")
 })

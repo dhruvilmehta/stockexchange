@@ -185,7 +185,7 @@ export class Engine {
 
                 } catch (e) {
                     console.log("Error hwile cancelling order",);
-                    console.log(e);
+                    // console.log(e);
                 }
                 break;
             case MessageToOrderbookTypes.GET_OPEN_ORDERS:
@@ -201,7 +201,7 @@ export class Engine {
                         payload: openOrders
                     });
                 } catch (e) {
-                    console.log(e);
+                    // console.log(e);
                 }
                 break;
             case MessageToOrderbookTypes.ON_RAMP:
@@ -221,7 +221,7 @@ export class Engine {
                         payload: orderbook.getDepth()
                     });
                 } catch (e) {
-                    console.log(e);
+                    // console.log(e);
                     RedisManager.getInstance().sendToApi(clientId, {
                         type: MessageFromOrderbookTypes.DEPTH,
                         payload: {
@@ -328,7 +328,7 @@ export class Engine {
     }
 
     publishWsTrades(fills: Fill[], userId: string, market: string): void {
-        console.log("Publishing trades")
+        console.log("Publishing trades at ", market)
         fills.forEach(fill => {
             RedisManager.getInstance().publishMessage(`trade@${market}`, {
                 stream: `trade@${market}`,

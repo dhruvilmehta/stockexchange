@@ -1,19 +1,9 @@
-import { createClient, RedisClientType } from 'redis';
-import { DbMessage, DbMessageType } from './types/DbMessage';
-import dotenv from 'dotenv'
-// import prisma from "@repo/prisma-client/client"
-import prisma from './prisma';
-import express from 'express'
+import { createClient, RedisClientType } from "redis";
+import { DbMessage, DbMessageType } from "./types/DbMessage";
+import prisma from "./prisma";
 
-dotenv.config()
-
-const app = express()
-
-app.get("/", (req, res) => {
-    return res.status(200).send("Engine Working")
-})
-
-async function main() {
+export async function main() {
+    console.log("Db running")
     const url = process.env.REDIS_CLIENT || 'redis://localhost:6379'
     const redisClient: RedisClientType = createClient({ url: url })
     await redisClient.connect();
@@ -28,10 +18,7 @@ async function main() {
                 console.log(data);
                 const price = data.data.price;
                 const timestamp = new Date(data.data.timestamp);
-                // const query = 'INSERT INTO tata_prices (time, price) VALUES ($1, $2)';
-                // // TODO: How to add volume?
-                // const values = [timestamp, price];
-                // await pgClient.query(query, values);
+
                 switch (data.data.market.toLowerCase()) {
                     case "tata_inr": {
                         try {
@@ -55,8 +42,3 @@ async function main() {
         }
     }
 }
-
-app.listen(3000, () => {
-    console.log("Listening on port 3000")
-})
-main();

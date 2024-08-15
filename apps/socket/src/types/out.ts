@@ -24,4 +24,6 @@ export type DepthUpdateMessage = {
     }
 }
 
+
+
 export type OutgoingMessage = TickerUpdateMessage | DepthUpdateMessage;

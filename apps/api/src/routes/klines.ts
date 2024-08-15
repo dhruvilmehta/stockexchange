@@ -56,7 +56,7 @@ klineRouter.get("/", async (req: Request, res: Response, next: NextFunction) => 
 
         return res.status(200).send(klines);
     } catch (error) {
-        console.error("Error executing query:", error);
+        console.error("Error executing query fetching kLines");
         return res.status(500).json({ message: "Internal Server Error" });
     }
 });

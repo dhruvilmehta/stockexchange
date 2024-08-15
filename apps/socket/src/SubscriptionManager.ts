@@ -22,12 +22,13 @@ export class SubscriptionManager {
     }
 
     public subscribe(userId: string, subscription: string) {
+        subscription = subscription.toLowerCase()
         if (this.subscriptions.get(userId)?.includes(subscription)) {
             return
         }
-
         this.subscriptions.set(userId, (this.subscriptions.get(userId) || []).concat(subscription));
         this.reverseSubscriptions.set(subscription, (this.reverseSubscriptions.get(subscription) || []).concat(userId));
+        console.log("Subscribe called", userId, subscription)
         if (this.reverseSubscriptions.get(subscription)?.length === 1) {
             this.redisClient.subscribe(subscription, this.redisCallbackHandler);
         }

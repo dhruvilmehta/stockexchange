@@ -2,8 +2,8 @@
 import axios from 'axios';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 
-// const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'https://stockexchange-4p5n.onrender.com';
+const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://stockexchange-4p5n.onrender.com';
 export function SwapUI({ market, price }: { market: string; price: string }) {
   const [amount, setAmount] = useState('');
   const [availableBalance, setAvailableBalance] = useState('');
