@@ -1,7 +1,8 @@
 import axios from "axios";
 import express from 'express'
 
-const BASE_URL = "http://localhost:3001";
+// const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://exchangebackend.dhruvilspace.site";
 // const BASE_URL = 'https://stockexchange-4p5n.onrender.com';
 const TOTAL_BIDS = 15;
 const TOTAL_ASK = 15;

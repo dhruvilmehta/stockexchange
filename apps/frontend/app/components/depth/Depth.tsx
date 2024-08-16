@@ -184,6 +184,9 @@ export function Depth({
 
   return (
     <div>
+      <div className="text-white-500 animate-pulse">
+        Dummy trades are going on. You can place your buy/sell orders here
+      </div>
       <div className="flex justify-between bg-gray-900">
         <div
           className={`flex flex-col flex-1 cursor-pointer justify-center border-b-2 p-4 ${
