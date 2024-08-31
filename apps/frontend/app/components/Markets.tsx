@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 export const Markets = () => {
   const [tickers, setTickers] = useState<TickerType[]>([]);
-  console.log(tickers, 'In markets');
+  // console.log(tickers, 'In markets');
 
   useEffect(() => {
     getTickers().then((m) => setTickers(m));

@@ -22,7 +22,7 @@ async function main() {
         const response = await redisClient.rPop("messages")
 
         if (response) {
-            console.log(response, " Received from api")
+            // console.log(response, " Received from api")
             engine.process(JSON.parse(response))
         }
     }

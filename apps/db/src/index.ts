@@ -24,8 +24,8 @@ async function main() {
         if (response) {
             const data: DbMessage = JSON.parse(response);
             if (data.type === DbMessageType.TRADE_ADDED) {
-                console.log("adding data to DB");
-                console.log(data);
+                // console.log("adding data to DB");
+                // console.log(data);
                 const price = data.data.price;
                 const timestamp = new Date(data.data.timestamp);
                 // const query = 'INSERT INTO tata_prices (time, price) VALUES ($1, $2)';
@@ -44,7 +44,7 @@ async function main() {
                                 }
                             })
                         } catch (error) {
-                            console.log("Error creating db record")
+                            // console.log("Error creating db record")
                         }
                         break;
                     }

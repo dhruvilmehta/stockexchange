@@ -13,7 +13,7 @@ export const Login = () => {
   const router = useRouter();
 
   const handleLogin = async () => {
-    console.log(username, password);
+    // console.log(username, password);
     if (username === '' || password === '') return;
     try {
       const response = await axios.post(`${SERVICE_URL}/login`, {
@@ -26,7 +26,7 @@ export const Login = () => {
       }
     } catch (error) {
       const axiosError = error as AxiosError;
-      console.log(axiosError.response?.data);
+      // console.log(axiosError.response?.data);
     }
   };
 

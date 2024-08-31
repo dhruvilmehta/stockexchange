@@ -23,7 +23,7 @@ tickerRouter.get("/", async (req: Request, res: Response) => {
     const endTime = now;
     const startTime = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     const user = await prisma.prices.findMany()
-    console.log(user)
+    // console.log(user)
     try {
         const query = `
     SELECT
@@ -45,12 +45,12 @@ tickerRouter.get("/", async (req: Request, res: Response) => {
     GROUP BY
         "companyName";
 `;
-        console.log(user, " Here")
+        // console.log(user, " Here")
         const tickerData: TickerType[] = await prisma.$queryRawUnsafe(query, startTime, endTime);
 
         return res.status(200).json(tickerData);
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         console.error("Error fetching tickerf data");
         return res.status(500).json({ message: "Internal Server Error" });
     }

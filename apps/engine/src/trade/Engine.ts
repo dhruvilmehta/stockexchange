@@ -34,7 +34,7 @@ export class Engine {
         try {
             if (process.env.WITH_SNAPSHOT) snapshot = fs.readFileSync("./snapshot.json");
         } catch (e) {
-            console.log("No snapshot found");
+            // console.log("No snapshot found");
         }
 
         if (snapshot) {
@@ -53,7 +53,7 @@ export class Engine {
             this.saveSnapshot();
         }, 1000 * 3);
 
-        console.log(this.orderbooks, " Order books")
+        // console.log(this.orderbooks, " Order books")
     }
 
     saveSnapshot() {
@@ -67,7 +67,7 @@ export class Engine {
     }
 
     setBaseBalances() {
-        console.log("Setting base balances")
+        // console.log("Setting base balances")
         this.balances.set("1", {
             [BASE_CURRENCY]: {
                 available: 10000000,
@@ -109,10 +109,10 @@ export class Engine {
         message: MessageToOrderbook;
         clientId: string;
     }) {
-        console.log(message, " Engine process")
+        // console.log(message, " Engine process")
         switch (message.type) {
             case MessageToOrderbookTypes.CREATE_ORDER: {
-                console.log(message.data.userId, "User id", this.balances.get(message.data.userId))
+                // console.log(message.data.userId, "User id", this.balances.get(message.data.userId))
                 const { executedQty, fills, orderId } = this.createOrder(
                     message.data.market.toLowerCase(),
                     message.data.price,
@@ -139,11 +139,11 @@ export class Engine {
                     if (!cancelOrderbook) throw new CustomError("Orderbook not found", 404)
 
                     const quoteAsset = cancelMarket.split("_")[1]?.toUpperCase();
-                    console.log(quoteAsset, " Quote Asset")
+                    // console.log(quoteAsset, " Quote Asset")
                     if (!quoteAsset) throw new CustomError("Null quote asset", 404)
                     const order = cancelOrderbook.asks.toArray().find(o => o.orderId === orderId) || cancelOrderbook.bids.toArray().find(o => o.orderId === orderId);
                     if (!order) {
-                        console.log("No order found");
+                        // console.log("No order found");
                         throw new CustomError("No order found", 404);
                     }
 
@@ -184,12 +184,12 @@ export class Engine {
                     });
 
                 } catch (e) {
-                    console.log("Error hwile cancelling order",);
+                    // console.log("Error hwile cancelling order",);
                     // console.log(e);
                 }
                 break;
             case MessageToOrderbookTypes.GET_OPEN_ORDERS:
-                console.log("GET_OPEN_ORDERS")
+                // console.log("GET_OPEN_ORDERS")
                 try {
                     const openOrderbook: Orderbook | undefined = this.orderbooks.get(message.data.market.toLowerCase());
                     if (!openOrderbook) throw new CustomError("Orderbook not found", 404)
@@ -232,7 +232,7 @@ export class Engine {
                 }
                 break;
             case MessageToOrderbookTypes.GET_USER_BALANCE: {
-                console.log("GET_USER_BALANCE")
+                // console.log("GET_USER_BALANCE")
                 try {
                     const asset = message.data.asset.toUpperCase()
                     const userId = message.data.userId
@@ -328,7 +328,7 @@ export class Engine {
     }
 
     publishWsTrades(fills: Fill[], userId: string, market: string): void {
-        console.log("Publishing trades at ", market)
+        // console.log("Publishing trades at ", market)
         fills.forEach(fill => {
             RedisManager.getInstance().publishMessage(`trade@${market}`, {
                 stream: `trade@${market}`,
@@ -379,9 +379,9 @@ export class Engine {
                 }
             });
             const updatedAsk = depth.asks.find(x => x[0] === price);
-            console.log("--------------------")
-            console.log(updatedBids, updatedAsk)
-            console.log("--------------------")
+            // console.log("--------------------")
+            // console.log(updatedBids, updatedAsk)
+            // console.log("--------------------")
             RedisManager.getInstance().publishMessage(`depth@${market}`, {
                 stream: `p${market}`,
                 data: {
@@ -477,9 +477,9 @@ export class Engine {
         price: string,
         quantity: string,
     ): void {
-        console.log("-----------------")
-        console.log(this.balances.get(userId), " Check Funds")
-        console.log("-----------------")
+        // console.log("-----------------")
+        // console.log(this.balances.get(userId), " Check Funds")
+        // console.log("-----------------")
         try {
             if (!this.balances.get(userId)) throw new CustomError("Balance not found", 404);
             if (side === OrderSide.BUY) {
@@ -495,7 +495,7 @@ export class Engine {
                         },
                     });
                     // throw new CustomError("Insufficient funds", 400);
-                    console.log("Insufficient funds!!!! Adding more dummy funds")
+                    // console.log("Insufficient funds!!!! Adding more dummy funds")
                 }
                 (this.balances.get(userId) as UserBalance)[quoteAsset]!.available -= Number(quantity) * Number(price);
                 (this.balances.get(userId) as UserBalance)[quoteAsset]!.locked += Number(quantity) * Number(price);
@@ -513,7 +513,7 @@ export class Engine {
                             locked: 0,
                         },
                     });
-                    console.log("Insufficient funds!!!! Adding more dummy funds")
+                    // console.log("Insufficient funds!!!! Adding more dummy funds")
                 }
 
                 (this.balances.get(userId) as UserBalance)[baseAsset]!.available -= Number(quantity) * Number(price);

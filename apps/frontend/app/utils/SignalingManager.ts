@@ -49,7 +49,7 @@ export class SignalingManager {
                             quoteVolume: message.data.V,
                             symbol: message.data.s,
                         }
-                        console.log(newTicker);
+                        // console.log(newTicker);
                         callback(newTicker);
                     }
                     if (type === "depth") {
@@ -68,7 +68,7 @@ export class SignalingManager {
                         callback({ bids: updatedBids, asks: updatedAsks });
                     }
                     if (type === "trade") {
-                        console.log(message, " Trade message")
+                        // console.log(message, " Trade message")
                         callback(message.data.p, message.data.q)
                     }
                 });

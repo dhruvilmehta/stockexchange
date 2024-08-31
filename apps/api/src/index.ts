@@ -32,42 +32,42 @@ app.listen(3001, () => {
 });
 main()
 
-setInterval(async () => {
-    try {
-        const response = await axios.get("https://stockexchange-engine.onrender.com")
-        if (response.status === 200) console.log("Engine Healthy")
-        else console.log("Problem with engine")
-    } catch (error) {
-        console.log("Problem with engine")
-    }
-}, 30000)
+// setInterval(async () => {
+//     try {
+//         const response = await axios.get("https://stockexchange-engine.onrender.com")
+//         if (response.status === 200) console.log("Engine Healthy")
+//         else console.log("Problem with engine")
+//     } catch (error) {
+//         console.log("Problem with engine")
+//     }
+// }, 30000)
 
-setInterval(async () => {
-    try {
-        const response = await axios.get("https://stockexchange-db.onrender.com")
-        if (response.status === 200) console.log("Db Healthy")
-        else console.log("Problem with Db")
-    } catch (error) {
-        console.log("Problem with Db")
-    }
-}, 30000)
+// setInterval(async () => {
+//     try {
+//         const response = await axios.get("https://stockexchange-db.onrender.com")
+//         if (response.status === 200) console.log("Db Healthy")
+//         else console.log("Problem with Db")
+//     } catch (error) {
+//         console.log("Problem with Db")
+//     }
+// }, 30000)
 
-setInterval(async () => {
-    try {
-        const response = await axios.get("https://stockexchange-mm.onrender.com")
-        if (response.status === 200) console.log("mm Healthy")
-        else console.log("Problem with mm")
-    } catch (error) {
-        console.log("Problem with mm")
-    }
-}, 30000)
+// setInterval(async () => {
+//     try {
+//         const response = await axios.get("https://stockexchange-mm.onrender.com")
+//         if (response.status === 200) console.log("mm Healthy")
+//         else console.log("Problem with mm")
+//     } catch (error) {
+//         console.log("Problem with mm")
+//     }
+// }, 30000)
 
-setInterval(async () => {
-    try {
-        const response = await axios.get("https://stockexchange-socket.onrender.com")
-        if (response.status === 200) console.log("Socket Healthy")
-        else console.log("Problem with socket")
-    } catch (error) {
-        console.log("Problem with socket")
-    }
-}, 30000)
+// setInterval(async () => {
+//     try {
+//         const response = await axios.get("https://stockexchange-socket.onrender.com")
+//         if (response.status === 200) console.log("Socket Healthy")
+//         else console.log("Problem with socket")
+//     } catch (error) {
+//         console.log("Problem with socket")
+//     }
+// }, 30000)

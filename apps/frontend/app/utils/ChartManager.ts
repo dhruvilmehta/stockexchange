@@ -202,7 +202,7 @@ export class ChartManager {
     if (!this.lastUpdateTime) {
       this.lastUpdateTime = new Date().getTime();
     }
-    console.log(this.lastUpdateTime / 1000, " last update time")
+    // console.log(this.lastUpdateTime / 1000, " last update time")
 
     const formattedData = klineData.map(data => ({
       // time: (this.lastUpdateTime / 1000) as UTCTimestamp, // Convert timestamp to seconds

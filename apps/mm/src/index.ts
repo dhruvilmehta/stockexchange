@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 async function main() {
     const price = 1000 + Math.random() * 10;
-    console.log("Starting trading cycle with price:", price);
+    // console.log("Starting trading cycle with price:", price);
 
     // Fetch open orders
     const openOrders = await axios.get(`${BASE_URL}/api/v1/order/open?userId=${USER_ID}&market=${MARKET}`, {
@@ -25,7 +25,7 @@ async function main() {
             Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTcyMjM4MDI1Nn0.sfo1n134ggCXt-m7aQ-6ZFc6PjWNOX0z9AB_773w4as"
         }
     });
-    console.log("Fetched open orders:", openOrders.data);
+    // console.log("Fetched open orders:", openOrders.data);
 
     const totalBids = openOrders.data.filter((o: any) => o.side === "buy").length;
     const totalAsks = openOrders.data.filter((o: any) => o.side === "sell").length;
@@ -54,7 +54,7 @@ async function addOrder(side: "buy" | "sell", basePrice: number) {
     const price = (basePrice + (side === "buy" ? Math.random() * 1 : -Math.random() * 1)).toFixed(1).toString();
     const quantity = Math.floor(Math.random() * 10) + 1; // Random quantity between 1 and 10
 
-    console.log(`Adding ${side} order with price: ${price}, quantity: ${quantity}`);
+    // console.log(`Adding ${side} order with price: ${price}, quantity: ${quantity}`);
     await axios.post(`${BASE_URL}/api/v1/order`, {
         market: MARKET,
         price,
@@ -69,7 +69,7 @@ async function addOrder(side: "buy" | "sell", basePrice: number) {
 }
 
 async function cancelBidsMoreThan(openOrders: any[], price: number) {
-    console.log("Cancelling bids more than price:", price);
+    // console.log("Cancelling bids more than price:", price);
     let delay = Math.random() * 500 + 500; // Random delay between 500ms and 1000ms
 
     for (let o of openOrders) {
@@ -91,7 +91,7 @@ async function cancelBidsMoreThan(openOrders: any[], price: number) {
 }
 
 async function cancelAsksLessThan(openOrders: any[], price: number) {
-    console.log("Cancelling asks less than price:", price);
+    // console.log("Cancelling asks less than price:", price);
     let delay = Math.random() * 500 + 500; // Random delay between 500ms and 1000ms
 
     for (let o of openOrders) {

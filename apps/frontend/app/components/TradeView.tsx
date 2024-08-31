@@ -36,7 +36,7 @@ export function TradeView({ market }: { market: string }) {
 
     if (chartManagerRef.current) {
       const chartManager = chartManagerRef.current;
-      console.log("Chart updated")
+      // console.log("Chart updated")
       chartManager.update(klineData);
     } else {
       const chartManager = new ChartManager(

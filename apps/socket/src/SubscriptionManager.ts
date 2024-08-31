@@ -11,7 +11,7 @@ export class SubscriptionManager {
         const url = process.env.REDIS_CLIENT || 'redis://localhost:6379'
         this.redisClient = createClient({ url: url });
         this.redisClient.connect();
-        console.log("Connected to redis at host ", url)
+        // console.log("Connected to redis at host ", url)
     }
 
     public static getInstance() {
@@ -28,7 +28,7 @@ export class SubscriptionManager {
         }
         this.subscriptions.set(userId, (this.subscriptions.get(userId) || []).concat(subscription));
         this.reverseSubscriptions.set(subscription, (this.reverseSubscriptions.get(subscription) || []).concat(userId));
-        console.log("Subscribe called", userId, subscription)
+        // console.log("Subscribe called", userId, subscription)
         if (this.reverseSubscriptions.get(subscription)?.length === 1) {
             this.redisClient.subscribe(subscription, this.redisCallbackHandler);
         }
@@ -50,7 +50,7 @@ export class SubscriptionManager {
     }
 
     public userLeft(userId: string) {
-        console.log("user left " + userId);
+        // console.log("user left " + userId);
         this.subscriptions.get(userId)?.forEach(s => this.unsubscribe(userId, s));
     }
 
@@ -60,7 +60,7 @@ export class SubscriptionManager {
 
     private redisCallbackHandler = (message: string, channel: string) => {
         const parsedMessage = JSON.parse(message);
-        console.log(parsedMessage)
+        // console.log(parsedMessage)
         this.reverseSubscriptions.get(channel)?.forEach(s => UserManager.getInstance().getUser(s)?.emit(parsedMessage));
     }
 }
