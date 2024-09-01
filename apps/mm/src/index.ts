@@ -118,4 +118,4 @@ app.listen(3004, () => {
 
 setInterval(() => {
     main();
-}, Math.random() * 10000 + 5000); // Random interval between 5s and 15s
+}, Math.random() * 10000 + 20000); // Random interval between 5s and 15s
